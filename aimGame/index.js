@@ -33,13 +33,7 @@ timeList.addEventListener('click', (event) => {
   }
 });
 
-resetBtn.addEventListener('click', () => {
-  score = 0;
-  time = constTime;
-  board.innerHTML = '';
-  timeEl.parentNode.classList.remove('hide');
-  startGame();
-});
+resetBtn.addEventListener('click', resetGame);
 
 board.addEventListener('click', event => {
   if (event.target.classList.contains('circle')) {
@@ -56,13 +50,19 @@ function startGame() {
   setTime(time);
 }
 
+function resetGame() {
+  score = 0;
+  time = constTime;
+  board.innerHTML = '';
+  timeEl.parentNode.classList.remove('hide');
+  startGame();
+}
+
 function decreaseTime() {
-  console.log(time);
   if (time === 0 ) {
     finishGame();
   } else {
     let current = --time;
-    console.log(current);
     if (current < 10) {
       current = '0' + current;
     }
